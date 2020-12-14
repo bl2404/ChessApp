@@ -40,10 +40,7 @@ namespace Chess
                 if (possibleFields.Any(x => x.Horizontal == field.Horizontal && x.Vertical == field.Vertical))
                     possibleFields.Remove(possibleFields.First(x => x.Horizontal == field.Horizontal && x.Vertical == field.Vertical));
             }
-            foreach (var item in possibleFields)
-            {
-                Console.WriteLine("possible: " + item.Horizontal + " " + item.Vertical);
-            }
+
             return possibleFields;
 
         }

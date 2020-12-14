@@ -13,7 +13,5 @@ namespace Chess
         }
         public Horizontal Horizontal { get; private set; }
         public Vertical Vertical { get; private set; }
-
-        //public IFigure Figure { get; set; }
     }
 }
