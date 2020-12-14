@@ -6,17 +6,10 @@ namespace Chess
 {
     public class Game
     {
-        public Game(List<IFigure> figures)
+        public void AddFigures(List<IFigure> figures)
         {
             Figures = figures;
-            Board = new Board();
-            Instance = this;
         }
-
-        public Board Board { get; private set; }
-
         public List<IFigure> Figures { get; private set; }
-
-        public static Game Instance { get; private set; }
     }
 }

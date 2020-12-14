@@ -7,6 +7,12 @@ namespace Chess
 {
     public abstract class Figure : IFigure
     {
+        public Figure(Game game, Color color, Field field)
+        {
+            Game = game;
+            Field = field;
+            Color = color;
+        }
         public Field Field { get; protected set; }
 
         public Color Color { get; protected set; }
@@ -15,7 +21,9 @@ namespace Chess
 
         public List<Field> VisibleFields => FindVisibleFields();
 
-        public void Move(Field field, Board board)
+        public Game Game { get; protected set; }
+
+        public void Move(Field field)
         {
             Field = field;
         }
@@ -44,7 +52,7 @@ namespace Chess
 
         protected bool IsFieldOccupated(Field field)
         {
-            if (Game.Instance.Figures.Any(f => f.Field.Horizontal == field.Horizontal && f.Field.Vertical == field.Vertical))
+            if (Game.Figures.Any(f => f.Field.Horizontal == field.Horizontal && f.Field.Vertical == field.Vertical))
                 return true;
             else
                 return false;
@@ -52,7 +60,7 @@ namespace Chess
 
         protected bool IsFieldOccupatedBySameColor(Field field)
         {
-            if (Game.Instance.Figures.Any(f =>f.Color==Color && f.Field.Horizontal == field.Horizontal && f.Field.Vertical == field.Vertical))
+            if (Game.Figures.Any(f =>f.Color==Color && f.Field.Horizontal == field.Horizontal && f.Field.Vertical == field.Vertical))
                 return true;
             else
                 return false;

@@ -6,7 +6,9 @@ namespace Chess
 {
     public interface IFigure
     {
-        void Move(Field field, Board board);
+        void Move(Field field);
+
+        Game Game { get; }
        
         List<Field> PossibleMoves { get; }
 

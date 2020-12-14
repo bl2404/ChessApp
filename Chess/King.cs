@@ -7,11 +7,7 @@ namespace Chess
 {
     public class King : Figure
     {
-        public King(Color color, Field field)
-        {
-            Field = field;
-            Color = color;
-        }
+        public King(Game game,Color color, Field field): base(game,color,field){}
 
         protected override List<Field> FindVisibleFields()
         {
@@ -40,7 +36,7 @@ namespace Chess
         protected override List<Field> FindAttackedFields()
         {
             List<Field> attackedFields = new List<Field>();
-            foreach (var figure in Game.Instance.Figures.Where(x => x.Color != this.Color))
+            foreach (var figure in Game.Figures.Where(x => x.Color != this.Color))
             {
                 foreach (var field in figure.VisibleFields)
                     attackedFields.Add(field);

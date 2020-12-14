@@ -8,11 +8,14 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            King whiteKing = new King(Color.White, new Field(Horizontal.H, Vertical.Five));
-            King blackRook2 = new King(Color.Black, new Field(Horizontal.E, Vertical.Eight));
-            Rook blackRook = new Rook(Color.Black, new Field(Horizontal.H, Vertical.Eight));
+            Game game = new Game();
 
-            Game game = new Game(new List<IFigure>() { whiteKing,whiteKing,blackRook});
+            King whiteKing = new King(game, Color.White, new Field(Horizontal.H, Vertical.Five));
+            King blackRook2 = new King(game, Color.Black, new Field(Horizontal.E, Vertical.Eight));
+            Rook blackRook = new Rook(game, Color.Black, new Field(Horizontal.H, Vertical.Eight));
+
+            game.AddFigures(new List<IFigure>() { whiteKing, blackRook, blackRook2 });
+
 
             foreach (var item in blackRook.PossibleMoves)
             {

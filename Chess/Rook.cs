@@ -7,12 +7,7 @@ namespace Chess
 {
     public class Rook : Figure
     {
-        public Rook(Color color, Field field)
-        {
-            Field = field;
-            Color = color;
-        }
-
+        public Rook(Game game, Color color, Field field) : base(game, color, field) { }
         protected override List<Field> FindVisibleFields()
         {
             List<Field> possibleMoves = new List<Field>();
@@ -81,30 +76,6 @@ namespace Chess
         protected override List<Field> FindAttackedFields()
         {
             return new List<Field>();
-        }
-
-
-        private List<Field> FindPossibleMovesOnEmptyBoard()
-        {
-            List<Field> possibleMoves = new List<Field>();
-            for (int i = 1; i <= 8; i++)
-            {
-                for (int j = 1; j <= 8; j++)
-                {
-                    //Field field = new Field((Horizontal)i, (Vertical)j);
-                    if ((Horizontal)i == Field.Horizontal || (Vertical)j==Field.Vertical)
-                    {
-                        possibleMoves.Add(new Field((Horizontal)i, (Vertical)j));
-                    }
-                }
-            }
-
-            possibleMoves.Remove(possibleMoves.First(x => x.Horizontal == Field.Horizontal && x.Vertical == Field.Vertical));
-            //foreach (var item in possibleMoves)
-            //{
-            //    Console.WriteLine("potential move:{2} R {0} {1}", item.Horizontal, item.Vertical, this.Color);
-            //}
-            return possibleMoves;
         }
     }
 }
