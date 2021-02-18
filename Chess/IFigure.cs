@@ -6,13 +6,18 @@ namespace Chess
 {
     public interface IFigure
     {
+        delegate void IFigureMovedEventHandler(object source, EventArgs eventArgs);
+
+        event IFigureMovedEventHandler IFigureMoved;
+        void OnIFigureMoved();
+
         void Move(Field field);
 
         Game Game { get; }
        
         List<Field> PossibleMoves { get; }
 
-        List<Field> VisibleFields { get; }
+        List<Field> VisibleFields { get; } 
 
         Field Field { get; }
 

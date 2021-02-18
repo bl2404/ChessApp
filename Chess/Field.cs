@@ -11,6 +11,15 @@ namespace Chess
             Horizontal = horizontal;
             Vertical = vertical;
         }
+
+        public bool IsFieldTheSame(Field field)
+        {
+            if (field.Horizontal == this.Horizontal && field.Vertical == Vertical)
+                return true;
+            else
+                return false;
+        }
+
         public Horizontal Horizontal { get; private set; }
         public Vertical Vertical { get; private set; }
     }

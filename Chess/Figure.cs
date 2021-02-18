@@ -12,6 +12,7 @@ namespace Chess
             Game = game;
             Field = field;
             Color = color;
+            IFigureMoved += game.OnIFigureMoved;
         }
         public Field Field { get; protected set; }
 
@@ -23,27 +24,17 @@ namespace Chess
 
         public Game Game { get; protected set; }
 
+        public event IFigure.IFigureMovedEventHandler IFigureMoved;
+
         public void Move(Field field)
         {
             Field = field;
+            OnIFigureMoved();
         }
 
         protected abstract List<Field> FindVisibleFields();
 
-        private List<Field> FindPossibleMoves()
-        {
-            List<Field> possibleFields = FindVisibleFields();
-            List<Field> attackedFields = FindAttackedFields();
-
-            foreach (Field field in attackedFields)
-            {
-                if (possibleFields.Any(x => x.Horizontal == field.Horizontal && x.Vertical == field.Vertical))
-                    possibleFields.Remove(possibleFields.First(x => x.Horizontal == field.Horizontal && x.Vertical == field.Vertical));
-            }
-
-            return possibleFields;
-
-        }
+        protected abstract List<Field> FindPossibleMoves();
 
         protected abstract List<Field> FindAttackedFields();
 
@@ -61,6 +52,12 @@ namespace Chess
                 return true;
             else
                 return false;
+        }
+
+        public virtual void OnIFigureMoved()
+        {
+            if (IFigureMoved != null)
+                IFigureMoved(this, EventArgs.Empty);
         }
     }
 }

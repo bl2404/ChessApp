@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Chess
 {
-    public class Rook : Figure
+    public class Rook : NormalFigure
     {
         public Rook(Game game, Color color, Field field) : base(game, color, field) { }
         protected override List<Field> FindVisibleFields()
