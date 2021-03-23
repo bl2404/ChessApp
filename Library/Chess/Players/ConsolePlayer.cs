@@ -28,7 +28,7 @@ namespace Chess.Players
 
         }
 
-        public void Move(IFigure figure, Field field)
+        private void Move(IFigure figure, Field field)
         {
             var move = new Move(figure, field);
             if (PossibleMoves.Any(x => x.IsMoveTheSame(move)))

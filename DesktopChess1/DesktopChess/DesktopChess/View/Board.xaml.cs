@@ -12,7 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Linq;
 
-namespace DesktopChess
+namespace DesktopChess.View
 {
     /// <summary>
     /// Interaction logic for Board.xaml
@@ -37,7 +37,7 @@ namespace DesktopChess
             _transform.X += _currentPoint.X - _anchorPoint.X;
             _transform.Y += (_currentPoint.Y - _anchorPoint.Y);
 
-            var element = sender as Rectangle;
+            var element = sender as FrameworkElement;
             element.RenderTransform = _transform;
             _anchorPoint = _currentPoint;
         }
@@ -45,12 +45,8 @@ namespace DesktopChess
         private void Figure_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             _transform = new TranslateTransform();
-            var element = sender as Rectangle;
-            if (element.Name != "Figure")
-            {
-                MessageBox.Show(element.Name);
-                return;
-            }
+            var element = sender as FrameworkElement;
+
             _anchorPoint = e.GetPosition(null);
             if (element != null) element.CaptureMouse();
             _isInDrag = true;
@@ -76,6 +72,11 @@ namespace DesktopChess
             element.RenderTransform = null;
 
             grid.Children.Add(element);
+        }
+
+        private void WhiteKing_MouseMove(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
