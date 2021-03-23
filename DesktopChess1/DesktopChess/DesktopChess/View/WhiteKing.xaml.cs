@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Chess;
+using DesktopChess.ViewModel;
 
 namespace DesktopChess.View
 {
@@ -18,9 +20,10 @@ namespace DesktopChess.View
     /// </summary>
     public partial class WhiteKing : UserControl
     {
-        public WhiteKing()
+        public WhiteKing(IFigure figure)
         {
             InitializeComponent();
+            DataContext = new FigureViewModel(figure);
         }
     }
 }

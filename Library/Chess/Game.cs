@@ -21,6 +21,15 @@ namespace Chess
             CurrentPlayer.InitiateMove();
         }
 
+        public void SetupExample1()
+        {
+            King whiteKing = new King(this, Color.White, new Field(Horizontal.F, Vertical._6));
+            Rook whiteRook = new Rook(this, Color.White, new Field(Horizontal.E, Vertical._6));
+            King blackKing = new King(this, Color.Black, new Field(Horizontal.H, Vertical._8));
+
+            AddFigures(new List<IFigure>() { whiteKing, blackKing, whiteRook });
+        }
+
         public void AddFigures(List<IFigure> figures)
         {
             Figures = figures;

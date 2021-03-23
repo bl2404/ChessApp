@@ -10,4 +10,19 @@
     <ProjectReference Include="..\..\..\Library\Chess\Chess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Icons\black_king.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\black_rook.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\white_king.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\white_rook.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
 </Project>

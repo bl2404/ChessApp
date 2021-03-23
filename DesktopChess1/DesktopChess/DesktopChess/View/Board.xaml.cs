@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Linq;
+using DesktopChess.ViewModel;
 
 namespace DesktopChess.View
 {
@@ -22,6 +23,17 @@ namespace DesktopChess.View
         public Board()
         {
             InitializeComponent();
+            DataContext = new GameViewModel();
+            foreach (var item in ((GameViewModel)DataContext).Model.Figures)
+            {
+                FrameworkElement gridItem = new Figure(item);
+                gridItem.SetValue(Grid.ColumnProperty, (int)item.Field.Horizontal);
+                gridItem.SetValue(Grid.RowProperty, 8-(int)item.Field.Vertical);
+                gridItem.MouseMove += Figure_MouseMove;
+                gridItem.MouseLeftButtonDown += Figure_MouseLeftButtonDown_1;
+                gridItem.MouseLeftButtonUp += Figure_MouseLeftButtonUp;
+                BoardGrid.Children.Add(gridItem);
+            }
         }
 
         private Point _anchorPoint;
@@ -72,11 +84,6 @@ namespace DesktopChess.View
             element.RenderTransform = null;
 
             grid.Children.Add(element);
-        }
-
-        private void WhiteKing_MouseMove(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

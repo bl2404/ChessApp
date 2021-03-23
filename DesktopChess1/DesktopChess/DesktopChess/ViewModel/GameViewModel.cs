@@ -8,15 +8,14 @@ namespace DesktopChess.ViewModel
 {
     class GameViewModel : INotifyPropertyChanged
     {
+        public Game Model { get; private set; }
+
         public GameViewModel()
         {
-            foreach (var figure in model.Figures)
-            {
-                //new FigureViewModel();
-            }
+            Model = new Game();
+            Model.SetupExample1();
         }
 
-        private Game model = new Game();
 
 
         public event PropertyChangedEventHandler PropertyChanged;

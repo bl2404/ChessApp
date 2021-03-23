@@ -8,20 +8,22 @@ namespace DesktopChess.ViewModel
 {
     class FigureViewModel : INotifyPropertyChanged
     {
-
-        private string imagePath;
-
         private IFigure _figure;
 
-        public FigureViewModel(Game game, IFigure figure)
+        public FigureViewModel(IFigure figure)
         {
             _figure = figure;
         }
 
-        //public int VerticalLocation
-        //{
-        //    get { return _figure.Field.Vertical; }
-        //}
+        public Field Field
+        {
+            get { return _figure.Field; }
+            set
+            {
+                //_figure.Field = value;
+                OnPropertyChanged(nameof(Field));
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

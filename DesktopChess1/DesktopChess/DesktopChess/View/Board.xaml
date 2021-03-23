@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:DesktopChess.View"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
+    <Grid Name="BoardGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -106,9 +106,9 @@
         <Rectangle x:Name="H2" Fill="SandyBrown" Grid.Column="7" Grid.Row="6"/>
         <Rectangle x:Name="H1" Fill="LightGray" Grid.Column="7" Grid.Row="7"/>
 
-        <views:WhiteKing Grid.Column="2" Grid.Row="1" MouseMove="Figure_MouseMove" MouseLeftButtonDown="Figure_MouseLeftButtonDown_1" MouseLeftButtonUp="Figure_MouseLeftButtonUp"></views:WhiteKing>
+        <!--<views:WhiteKing Grid.Column="2" Grid.Row="1" MouseMove="Figure_MouseMove" MouseLeftButtonDown="Figure_MouseLeftButtonDown_1" MouseLeftButtonUp="Figure_MouseLeftButtonUp"></views:WhiteKing>
         <views:BlackKing Grid.Column="4" Grid.Row="1" MouseMove="Figure_MouseMove" MouseLeftButtonDown="Figure_MouseLeftButtonDown_1" MouseLeftButtonUp="Figure_MouseLeftButtonUp"></views:BlackKing>
-        <views:WhiteRook Grid.Column="2" Grid.Row="2" MouseMove="Figure_MouseMove" MouseLeftButtonDown="Figure_MouseLeftButtonDown_1" MouseLeftButtonUp="Figure_MouseLeftButtonUp"></views:WhiteRook>
+        <views:WhiteRook Grid.Column="2" Grid.Row="2" MouseMove="Figure_MouseMove" MouseLeftButtonDown="Figure_MouseLeftButtonDown_1" MouseLeftButtonUp="Figure_MouseLeftButtonUp"></views:WhiteRook>-->
 
 
     </Grid>
