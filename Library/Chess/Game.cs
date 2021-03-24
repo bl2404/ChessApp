@@ -7,19 +7,6 @@ namespace Chess
 {
     public class Game
     {
-        public void SetupExample()
-        {
-            King whiteKing = new King(this, Color.White, new Field(Horizontal.F, Vertical._6));
-            Rook whiteRook = new Rook(this, Color.White, new Field(Horizontal.E, Vertical._6));
-            King blackKing = new King(this, Color.Black, new Field(Horizontal.H, Vertical._8));
-
-            AddFigures(new List<IFigure>() { whiteKing, blackKing, whiteRook });
-
-            WhitePlayer = new ConsolePlayer(this);
-            BlackPlayer = new AutoPlayerDefend(this);
-            CurrentPlayer = WhitePlayer;
-            CurrentPlayer.InitiateMove();
-        }
 
         public void SetupExample1()
         {
@@ -53,10 +40,10 @@ namespace Chess
 
         public List<IFigure> Figures { get; private set; }
 
-        public Player WhitePlayer { get; private set; }
+        public Player WhitePlayer { get; set; }
 
-        public Player BlackPlayer { get; private set; }
+        public Player BlackPlayer { get; set; }
 
-        public Player CurrentPlayer { get; private set; }
+        public Player CurrentPlayer { get; set; }
     }
 }

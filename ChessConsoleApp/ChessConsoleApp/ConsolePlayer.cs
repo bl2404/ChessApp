@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Chess;
+using Chess.Players;
 
-namespace Chess.Players
+namespace ChessConsoleApp
 {
     public class ConsolePlayer : Player
     {
@@ -20,12 +22,11 @@ namespace Chess.Players
             else
                 figure = Game.Figures.First(x => x.Color == this.Color && x is Rook);
 
-            Enum.TryParse(input[1].ToString(), out Horizontal horizontal);
-            Enum.TryParse("_"+input[2].ToString(), out Vertical vertical);
+            Horizontal a=(Horizontal)Enum.Parse(typeof(Horizontal),input[1].ToString());
+            Vertical b=(Vertical)Enum.Parse(typeof(Vertical),"_"+input[2].ToString());
 
-            Field field = new Field(horizontal, vertical);
+            Field field = new Field(a, b);
             Move(figure, field);
-
         }
 
         private void Move(IFigure figure, Field field)
