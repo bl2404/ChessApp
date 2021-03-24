@@ -29,8 +29,8 @@ namespace DesktopChess.View
         public Figure(IFigure figure)
         {
             InitializeComponent();
-            SetBrush(figure);
             DataContext = new FigureViewModel(figure);
+            SetBrush(figure);
         }
 
         public void SetBrush(IFigure figure)

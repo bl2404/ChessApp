@@ -27,11 +27,19 @@ namespace DesktopChess.View
             foreach (var item in ((GameViewModel)DataContext).Model.Figures)
             {
                 FrameworkElement gridItem = new Figure(item);
-                gridItem.SetValue(Grid.ColumnProperty, (int)item.Field.Horizontal);
-                gridItem.SetValue(Grid.RowProperty, 8-(int)item.Field.Vertical);
+
                 gridItem.MouseMove += Figure_MouseMove;
-                gridItem.MouseLeftButtonDown += Figure_MouseLeftButtonDown_1;
+                gridItem.MouseLeftButtonDown += Figure_MouseLeftButtonDown;
                 gridItem.MouseLeftButtonUp += Figure_MouseLeftButtonUp;
+
+                Binding bindingH = new Binding("HorizontalLocation");
+                bindingH.Mode = BindingMode.TwoWay;
+                gridItem.SetBinding(Grid.ColumnProperty, bindingH);
+
+                Binding bindingV = new Binding("VerticalLocation");
+                bindingV.Mode = BindingMode.TwoWay;
+                gridItem.SetBinding(Grid.RowProperty, bindingV);
+
                 BoardGrid.Children.Add(gridItem);
             }
         }
@@ -54,7 +62,7 @@ namespace DesktopChess.View
             _anchorPoint = _currentPoint;
         }
 
-        private void Figure_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        private void Figure_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _transform = new TranslateTransform();
             var element = sender as FrameworkElement;

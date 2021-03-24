@@ -13,15 +13,29 @@ namespace DesktopChess.ViewModel
         public FigureViewModel(IFigure figure)
         {
             _figure = figure;
+            verticalLocation = 8 - (int)figure.Field.Vertical;
+            horizontalLocation = (int)figure.Field.Horizontal;
         }
 
-        public Field Field
+        private int verticalLocation;
+        public int VerticalLocation 
         {
-            get { return _figure.Field; }
+            get { return verticalLocation; }
             set
             {
-                //_figure.Field = value;
-                OnPropertyChanged(nameof(Field));
+                verticalLocation = value;
+                OnPropertyChanged(nameof(VerticalLocation));
+            }
+        }
+
+        private int horizontalLocation;
+        public int HorizontalLocation
+        {
+            get { return horizontalLocation; }
+            set
+            {
+                horizontalLocation = value;
+                OnPropertyChanged(nameof(HorizontalLocation));
             }
         }
 

@@ -6,9 +6,5 @@
              xmlns:local="clr-namespace:DesktopChess.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Rectangle x:Name="FigureRectangle">
-
-        </Rectangle>
-    </Grid>
+    <Rectangle x:Name="FigureRectangle"/>
 </UserControl>
