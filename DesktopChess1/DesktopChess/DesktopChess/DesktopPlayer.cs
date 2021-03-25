@@ -9,12 +9,14 @@ namespace DesktopChess
 {
     class DesktopPlayer : Player
     {
-        public DesktopPlayer(Game game) : base(game) { }
+        private Game _game;
+        public DesktopPlayer(Game game) : base(game) { _game = game; }
 
         public override Color Color => Color.White;
 
         public override void InitiateMove()
         {
+            //Console.WriteLine(this.);
         }
 
         public void Move(IFigure figure, Field field)

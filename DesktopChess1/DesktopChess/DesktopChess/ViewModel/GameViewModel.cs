@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Chess;
+using Chess.Players;
+using DesktopChess.View;
 
 namespace DesktopChess.ViewModel
 {
-    class GameViewModel : INotifyPropertyChanged
+    class GameViewModel
     {
         public Game Model { get; private set; }
+        public Board Board { get; set; }
 
-        public GameViewModel()
+        public EventHandler EventHandler;
+
+        public GameViewModel(Board board)
         {
             Model = new Game();
-            Model.SetupExample1();
+            Board = board;
+            SetupExample();
         }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+        void SetupExample()
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                var e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
+            Model = new Game();
+            King whiteKing = new King(Model, Color.White, new Field(Horizontal.F, Vertical._6));
+            Rook whiteRook = new Rook(Model, Color.White, new Field(Horizontal.E, Vertical._6));
+            King blackKing = new King(Model, Color.Black, new Field(Horizontal.H, Vertical._8));
+
+            Model.AddFigures(new List<IFigure>() { whiteKing, blackKing, whiteRook });
+
+            //Model.AddFigures(new List<IFigure>() { whiteKing });
+
+            Model.WhitePlayer = new DesktopPlayer(Model);
+            Model.BlackPlayer = new AutoPlayerDefend(Model);
+            Model.CurrentPlayer = Model.WhitePlayer;
+            Model.CurrentPlayer.InitiateMove();
         }
     }
 }

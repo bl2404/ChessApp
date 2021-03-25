@@ -8,7 +8,7 @@ namespace Chess
     public class Game
     {
 
-        public void SetupExample1()
+        public void SetupExample()
         {
             King whiteKing = new King(this, Color.White, new Field(Horizontal.F, Vertical._6));
             Rook whiteRook = new Rook(this, Color.White, new Field(Horizontal.E, Vertical._6));
@@ -27,6 +27,7 @@ namespace Chess
             IFigure figure = (IFigure)sender;
             SetCurrentTurn();
             CurrentPlayer.InitiateMove();
+            Finish();
         }
 
         private void SetCurrentTurn()
@@ -37,6 +38,15 @@ namespace Chess
                 CurrentPlayer = WhitePlayer;
         }
 
+        public delegate void OnMoveFinished(object source, EventArgs eventArgs);
+
+        public event OnMoveFinished MoveFinish;
+
+        public void Finish()
+        {
+            if (MoveFinish != null && CurrentPlayer==WhitePlayer)
+                MoveFinish(this, EventArgs.Empty);
+        }
 
         public List<IFigure> Figures { get; private set; }
 

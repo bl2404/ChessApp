@@ -23,7 +23,7 @@ namespace DesktopChess.View
         public Board()
         {
             InitializeComponent();
-            DataContext = new GameViewModel();
+            DataContext = new GameViewModel(this);
             foreach (var item in ((GameViewModel)DataContext).Model.Figures)
             {
                 FrameworkElement gridItem = new Figure(item);

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace Chess
 {
-    public interface IFigure
+    public interface IFigure: INotifyPropertyChanged
     {
         delegate void IFigureMovedEventHandler(object source, EventArgs eventArgs);
 
         event IFigureMovedEventHandler IFigureMoved;
+
         void OnIFigureMoved();
 
         void Move(Field field);

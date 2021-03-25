@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Chess
 {
@@ -14,7 +15,20 @@ namespace Chess
             Color = color;
             IFigureMoved += game.OnIFigureMoved;
         }
-        public Field Field { get; protected set; }
+        //public Field Field { get; protected set; }
+
+        private Field field;
+
+        public Field Field
+        {
+            get { return field; }
+            set 
+            { 
+                field = value; 
+                OnPropertyChanged(nameof(Field)); 
+            }
+        }
+
 
         public Color Color { get; protected set; }
 
@@ -58,6 +72,18 @@ namespace Chess
         {
             if (IFigureMoved != null)
                 IFigureMoved(this, EventArgs.Empty);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null && Game.CurrentPlayer==Game.BlackPlayer)
+            {
+                var e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
         }
     }
 }
