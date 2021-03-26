@@ -10,6 +10,7 @@ namespace Chess.Players
         public Player(Game game)
         {
             Game = game;
+            NoMoveEvent = game.NoMoreEvent;
         }
 
         public abstract void InitiateMove();
@@ -30,7 +31,18 @@ namespace Chess.Players
                     moves.Add(new Move(figure, field));
                 }
             }
+            if (moves.Count == 0)
+                RaiseNoMoveEvent();
             return moves;
+        }
+
+        public delegate void OnNoMoveSituation(object sender, EventArgs e);
+        public EventHandler NoMoveEvent;
+        
+        private void RaiseNoMoveEvent()
+        {
+            if (NoMoveEvent != null)
+                NoMoveEvent(this, EventArgs.Empty);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 using Chess;
 using Chess.Players;
 using DesktopChess.View;
@@ -20,6 +21,12 @@ namespace DesktopChess.ViewModel
             Model = new Game();
             Board = board;
             SetupExample();
+            Model.GameFinished += Model_GameFinished;
+        }
+
+        private void Model_GameFinished(object sender, ResultEventArgs e)
+        {
+            MessageBoxResult m=MessageBox.Show(e.Result.ToString());
         }
 
         void SetupExample()

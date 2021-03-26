@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Chess
 {
-    public interface IFigure: INotifyPropertyChanged
+    public interface IFigure
     {
         delegate void IFigureMovedEventHandler(object source, EventArgs eventArgs);
 

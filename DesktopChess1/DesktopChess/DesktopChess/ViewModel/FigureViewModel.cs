@@ -16,22 +16,11 @@ namespace DesktopChess.ViewModel
             _figure = figure;
             verticalLocation = 8 - (int)figure.Field.Vertical;
             horizontalLocation = (int)figure.Field.Horizontal - 1;
-            this._figure.PropertyChanged += new PropertyChangedEventHandler(model_PropertyChanged);
-            this._figure.IFigureMoved += _figure_IFigureMoved;
             this._figure.Game.MoveFinish += Game_MoveFinish;
-            Task task = new Task(() => DoAction());
-            //task.Start();
-        }
-
-        public void DoAction()
-        {
-            System.Threading.Thread.Sleep(4000);
-            VerticalLocation = 3;
         }
 
         private void Game_MoveFinish(object source, EventArgs eventArgs)
         {
-
             System.Diagnostics.Debug.WriteLine(
                 "MOVE_INFO - " + _figure.GetType() + " " + _figure.Color + " " + _figure.Field.Horizontal + _figure.Field.Vertical);
             if (_figure.Color == Color.White)
@@ -42,22 +31,7 @@ namespace DesktopChess.ViewModel
             locked = false;
         }
 
-        private void _figure_IFigureMoved(object source, EventArgs eventArgs)
-        {
-            //locked = true;
-            //Figure movedFigure = (Figure)source;
-            //if (movedFigure.Color == Color.Black)
-            //{
-            //    VerticalLocation = 8 - (int)movedFigure.Field.Vertical;
-            //    HorizontalLocation = (int)movedFigure.Field.Horizontal;
-            //}
-            //locked = false;
-        }
 
-        private void model_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
 
         private int verticalLocation;
         public int VerticalLocation 

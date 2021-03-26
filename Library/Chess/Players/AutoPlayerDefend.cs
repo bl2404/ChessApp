@@ -15,10 +15,13 @@ namespace Chess.Players
 
         protected override void Move()
         {
-            int random = new Random().Next(PossibleMoves.Count - 1);
-            var move = PossibleMoves[random];
-            Console.WriteLine("computer: K " + move.Field.Horizontal + move.Field.Vertical);
-            move.Figure.Move(move.Field);
+            if (PossibleMoves.Count > 0)
+            {
+                int random = new Random().Next(PossibleMoves.Count - 1);
+                var move = PossibleMoves[random];
+                Console.WriteLine("computer: K " + move.Field.Horizontal + move.Field.Vertical);
+                move.Figure.Move(move.Field);
+            }
         }
     }
 }
