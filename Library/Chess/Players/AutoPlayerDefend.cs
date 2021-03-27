@@ -15,6 +15,7 @@ namespace Chess.Players
 
         protected override void Move()
         {
+            //System.Threading.Thread.Sleep(1000);
             if (PossibleMoves.Count > 0)
             {
                 int random = new Random().Next(PossibleMoves.Count - 1);

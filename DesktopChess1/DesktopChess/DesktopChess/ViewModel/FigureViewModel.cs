@@ -17,6 +17,13 @@ namespace DesktopChess.ViewModel
             verticalLocation = 8 - (int)figure.Field.Vertical;
             horizontalLocation = (int)figure.Field.Horizontal - 1;
             this._figure.Game.MoveFinish += Game_MoveFinish;
+            this._figure.IFigureMoved += _figure_IFigureMoved;
+        }
+
+        private void _figure_IFigureMoved(object source, EventArgs eventArgs)
+        {
+            VerticalLocation=8-(int)_figure.Field.Vertical;
+            HorizontalLocation = (int)_figure.Field.Horizontal - 1;
         }
 
         private void Game_MoveFinish(object source, EventArgs eventArgs)
@@ -56,15 +63,15 @@ namespace DesktopChess.ViewModel
         }
 
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        public virtual void OnPropertyChanged(string propertyName)
         {
-            if (propertyName == nameof(VerticalLocation) && !locked)
-            {
-                Horizontal horizontal = (Horizontal)Enum.Parse(typeof(Horizontal), (1 + HorizontalLocation).ToString());
-                Vertical vertical = (Vertical)Enum.Parse(typeof(Vertical), (8 - VerticalLocation).ToString());
-                Field field = new Field(horizontal, vertical);
-                _figure.Move(field);
-            }
+            //if (propertyName == nameof(VerticalLocation) && !locked)
+            //{
+            //    Horizontal horizontal = (Horizontal)Enum.Parse(typeof(Horizontal), (1 + HorizontalLocation).ToString());
+            //    Vertical vertical = (Vertical)Enum.Parse(typeof(Vertical), (8 - VerticalLocation).ToString());
+            //    Field field = new Field(horizontal, vertical);
+            //    _figure.Move(field);
+            //}
 
             PropertyChangedEventHandler handler = this.PropertyChanged;
             if (handler != null)
@@ -72,6 +79,15 @@ namespace DesktopChess.ViewModel
                 var e = new PropertyChangedEventArgs(propertyName);
                 handler(this, e);
             }
+        }
+
+
+        public void Move(int horizontal, int vertical)
+        {
+            Horizontal horizontalConverted = (Horizontal)Enum.Parse(typeof(Horizontal), (1 + horizontal).ToString());
+            Vertical verticalConverted = (Vertical)Enum.Parse(typeof(Vertical), (8 - vertical).ToString());
+            Field field = new Field(horizontalConverted, verticalConverted);
+            _figure.Move(field);
         }
 
         private bool locked = false;

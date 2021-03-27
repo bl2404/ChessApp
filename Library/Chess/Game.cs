@@ -21,7 +21,12 @@ namespace Chess
             AddFigures(new List<IFigure>() { whiteKing, blackKing, whiteRook });
         }
 
-        internal void NoMoreEvent(object sender, EventArgs e)
+        internal void OnIllegalMove(object sender, EventArgs e)
+        {
+
+        }
+
+        internal void NoMoreMoveEvent(object sender, EventArgs e)
         {
             var result = Result.White_Win;
             if (!Check)
@@ -60,8 +65,6 @@ namespace Chess
                 MoveFinish(this, EventArgs.Empty);
         }
 
-
-        //public delegate OnGameFinished(object sender, ResultEventArgs eventArgs);
         public event EventHandler<ResultEventArgs> GameFinished;
         private void RaiseGameFinished(Result result)
         {

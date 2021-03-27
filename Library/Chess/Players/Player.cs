@@ -10,7 +10,7 @@ namespace Chess.Players
         public Player(Game game)
         {
             Game = game;
-            NoMoveEvent = game.NoMoreEvent;
+            NoMoveEvent = game.NoMoreMoveEvent;
         }
 
         public abstract void InitiateMove();

@@ -14,6 +14,7 @@ namespace Chess
             Field = field;
             Color = color;
             IFigureMoved += game.OnIFigureMoved;
+            OnIllegalMove += game.OnIllegalMove;
         }
 
         public Field Field { get; set; }
@@ -30,8 +31,16 @@ namespace Chess
 
         public void Move(Field field)
         {
-            Field = field;
-            OnIFigureMoved();
+            //var move = new Move(this, field);
+            if (PossibleMoves.Any(x => x.IsFieldTheSame(field)))
+            {
+                Field = field;
+                OnIFigureMoved();
+            }
+            else
+            {
+                RaiseIllegalMove();
+            }
         }
 
         protected abstract List<Field> FindVisibleFields();
@@ -61,5 +70,14 @@ namespace Chess
             if (IFigureMoved != null)
                 IFigureMoved(this, EventArgs.Empty);
         }
+
+        public EventHandler OnIllegalMove;
+        public void RaiseIllegalMove()
+        {
+            if (OnIllegalMove != null)
+                OnIllegalMove(this, EventArgs.Empty);
+        }
+
+
     }
 }

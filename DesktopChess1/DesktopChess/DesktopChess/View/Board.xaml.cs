@@ -87,8 +87,9 @@ namespace DesktopChess.View
             int column = (int)targetField.GetValue(Grid.ColumnProperty);
             int row = (int)targetField.GetValue(Grid.RowProperty);
 
-            element.SetValue(Grid.ColumnProperty, column);
-            element.SetValue(Grid.RowProperty, row);
+            //element.SetValue(Grid.ColumnProperty, column);
+            //element.SetValue(Grid.RowProperty, row);
+            ((FigureViewModel)element.DataContext).Move(column, row);
             element.RenderTransform = null;
 
             grid.Children.Add(element);
