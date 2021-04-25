@@ -20,7 +20,8 @@ namespace DesktopChess.ViewModel
         {
             Model = new Game();
             Board = board;
-            SetupExample();
+            //SetupExample();
+            SetupExampleAutoAttack();
             Model.GameFinished += Model_GameFinished;
         }
 
@@ -41,7 +42,42 @@ namespace DesktopChess.ViewModel
             //Model.AddFigures(new List<IFigure>() { whiteKing });
 
             Model.WhitePlayer = new DesktopPlayer(Model);
-            Model.BlackPlayer = new AutoPlayerDefend(Model);
+            Model.BlackPlayer = new AutoPlayerAttack(Model);
+            Model.CurrentPlayer = Model.WhitePlayer;
+            Model.CurrentPlayer.InitiateMove();
+        }
+
+        private void SetupExampleAutoAttack()
+        {
+            Model = new Game();
+            King whiteKing = new King(Model, Color.White, new Field(Horizontal.E, Vertical._5));
+            Rook blackRook = new Rook(Model, Color.Black, new Field(Horizontal.C, Vertical._3));
+            King blackKing = new King(Model, Color.Black, new Field(Horizontal.D, Vertical._3));
+
+            Model.AddFigures(new List<IFigure>() { whiteKing, blackKing, blackRook });
+
+            //Model.AddFigures(new List<IFigure>() { whiteKing });
+
+            Model.WhitePlayer = new DesktopPlayer(Model);
+            Model.BlackPlayer = new AutoPlayerAttack(Model);
+            Model.CurrentPlayer = Model.WhitePlayer;
+            Model.CurrentPlayer.InitiateMove();
+        }
+
+
+        private void SetupExampleAutoAttack1()
+        {
+            Model = new Game();
+            King whiteKing = new King(Model, Color.White, new Field(Horizontal.E, Vertical._4));
+            Rook blackRook = new Rook(Model, Color.Black, new Field(Horizontal.E, Vertical._8));
+            King blackKing = new King(Model, Color.Black, new Field(Horizontal.E, Vertical._6));
+
+            Model.AddFigures(new List<IFigure>() { whiteKing, blackKing, blackRook });
+
+            //Model.AddFigures(new List<IFigure>() { whiteKing });
+
+            Model.WhitePlayer = new DesktopPlayer(Model);
+            Model.BlackPlayer = new AutoPlayerAttack(Model);
             Model.CurrentPlayer = Model.WhitePlayer;
             Model.CurrentPlayer.InitiateMove();
         }

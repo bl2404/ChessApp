@@ -23,7 +23,7 @@ namespace DesktopChess.View
     public partial class Figure : UserControl
     {
         private readonly string whiteRookPath="Icons\\white_rook.png";
-        private readonly string blackRookPath = "Icons\\black.png";
+        private readonly string blackRookPath = "Icons\\black_rook.png";
         private readonly string whiteKingPath = "Icons\\white_king.png";
         private readonly string blackKingPath = "Icons\\black_king.png";
         public Figure(IFigure figure)
