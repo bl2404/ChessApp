@@ -36,7 +36,7 @@ namespace Chess.Players
                 }
                 else
                 {
-                    RandomKingMove();
+                    MoveKingCloser();
                 }
             }
         }
@@ -165,15 +165,31 @@ namespace Chess.Players
             return possibleKingMoves;
         }
 
-        private void RandomKingMove()
+        private void MoveKingCloser()
         {
             Color currentPlayerColor = this.Game.CurrentPlayer.Color;
             King king = (King)Game.Figures.First(f => f.Color == currentPlayerColor && f is King);
             Rook rook = (Rook)Game.Figures.First(f => f.Color == currentPlayerColor && f is Rook);
-            //King foreginKing = (King)Game.Figures.First(f => f.Color != currentPlayerColor && f is King);
+            King foreginKing = (King)Game.Figures.First(f => f.Color != currentPlayerColor && f is King);
 
             var potentialKingsMoves = king.PossibleMoves.Where(x => IsRookProtected(rook.Field, x));
-            king.Move(potentialKingsMoves.First());
+
+            double distance = int.MaxValue;
+            List<Field> orderedMoves = new List<Field>();
+            foreach (var field in potentialKingsMoves)
+            {
+                double horizontalDifference = Math.Abs((int)field.Horizontal - (int)foreginKing.Field.Horizontal);
+                double verticalDifference = Math.Abs((int)field.Vertical- (int)foreginKing.Field.Vertical);
+                double calculatedDistance = Math.Max(horizontalDifference, verticalDifference);
+                if (calculatedDistance < distance)
+                {
+                    distance = calculatedDistance;
+                    orderedMoves.Add(field);
+
+                }
+            }
+
+            king.Move(orderedMoves.Last());
         }
     }
 }

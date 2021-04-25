@@ -42,7 +42,7 @@ namespace DesktopChess.ViewModel
             //Model.AddFigures(new List<IFigure>() { whiteKing });
 
             Model.WhitePlayer = new DesktopPlayer(Model);
-            Model.BlackPlayer = new AutoPlayerAttack(Model);
+            Model.BlackPlayer = new AutoPlayerDefend(Model);
             Model.CurrentPlayer = Model.WhitePlayer;
             Model.CurrentPlayer.InitiateMove();
         }

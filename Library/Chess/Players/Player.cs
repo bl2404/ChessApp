@@ -21,7 +21,7 @@ namespace Chess.Players
 
         public abstract Color Color { get; }
 
-        private List<Move> FindPossibleMoves()
+        protected List<Move> FindPossibleMoves()
         {
             List<Move> moves = new List<Move>();
             foreach (var figure in Game.Figures.Where(x=>x.Color==this.Color))

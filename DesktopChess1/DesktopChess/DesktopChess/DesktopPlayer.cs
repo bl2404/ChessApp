@@ -16,7 +16,7 @@ namespace DesktopChess
 
         public override void InitiateMove()
         {
-            //Console.WriteLine(this.);
+            FindPossibleMoves();
         }
 
         public void Move(IFigure figure, Field field)
